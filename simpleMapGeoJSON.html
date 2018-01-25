@@ -1,5 +1,5 @@
 <html>
-<head>
+<head> 	   
        <!-- the following links add the CSS and Javascript required for the Leaflet Map -->
        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
        integrity="sha512-
@@ -36,7 +36,7 @@ basemap tiles -->
         "type": "Feature",
         "properties": {
           "name": "London",
-          "popupContent": "This is where UCL is based"
+          "popupContent": "This is where British Museum is based"
         },
         "geometry": {
           "type": "Point",
@@ -44,7 +44,11 @@ basemap tiles -->
         }
       };
       // and add it to the map
-      L.geoJSON(geojsonFeature).addTo(mymap).bindPopup("<b>"+geojsonFeature.properties.name+""+geojsonFeature.properties.popupContent+"<b>");
+      L.geoJSON(geojsonFeature, {
+        pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, {icon:testMarkerPink});
+        }
+     }).addTo(mymap).bindPopup("<b>"+geojsonFeature.properties.name+""+geojsonFeature.properties.popupContent+"<b>");
         </script>
 </body>
 </html>
